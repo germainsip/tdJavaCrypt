@@ -1,18 +1,12 @@
 package test;
 
-import com.afpa.Bidule;
 import com.afpa.tools.Transcoder;
 import org.germain.tool.ManaBox;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BiduleTest {
-    @Test
-    public void faitQuelqueChose(){
-        Bidule bidule = new Bidule();
-        System.out.println("bonjour");
-        Assert.assertNotNull(bidule);
-    }
+
     @Test
     public void readKeyTest() {
         // La clé cryptée donnée plus haut

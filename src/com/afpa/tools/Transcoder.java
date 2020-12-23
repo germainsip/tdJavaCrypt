@@ -43,5 +43,8 @@ public class Transcoder {
     public String encode(String message){
        //décodage
         return message;
+    }public String decode(String message){
+       //décodage
+        return message;
     }
 }
