@@ -17,6 +17,10 @@ public class Transcoder {
         return decode;
     }
 
+    /**
+     * Constructeur de Transcoder
+     * @param keyCrypted clé cryptée
+     */
     public Transcoder(String keyCrypted) {
         String key = ManaBox.decrypt(keyCrypted);
 
@@ -39,11 +43,23 @@ public class Transcoder {
         }
     }
 
-
+    /**
+     * Méthode de codage de messages
+     * @param message
+     * @return
+     */
     public String encode(String message){
        //décodage
         return message;
-    }public String decode(String message){
+
+    }
+
+    /**
+     * Méthode de décodage de messages
+     * @param message
+     * @return
+     */
+    public String decode(String message){
        //décodage
         return message;
     }
