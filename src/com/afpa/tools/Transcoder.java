@@ -5,6 +5,8 @@ import org.germain.tool.ManaBox;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.stripAccents;
+
 public class Transcoder {
     private Map<Character,String> encode = new HashMap<Character, String>();
     private Map<String,Character> decode = new HashMap<String, Character>();
@@ -50,7 +52,14 @@ public class Transcoder {
      */
     public String encode(String message){
        //décodage
-        return message;
+        message = stripAccents(message);
+        //System.out.println(msgTest);
+        char[] mesgTab = message.toCharArray();
+        StringBuilder msgRetour = new StringBuilder();
+        for(Character letter : mesgTab){
+            msgRetour.append(encode.get(letter));
+        }
+        return msgRetour.toString();
 
     }
 
@@ -61,6 +70,23 @@ public class Transcoder {
      */
     public String decode(String message){
        //décodage
-        return message;
+        StringBuilder msgRetour = new StringBuilder();
+        String[] mesgTab = new String[ message.length()/2];
+        int j = 0;
+        //System.out.println("msgTest to tab");
+        for (int i = 0 ; i < message.length()-1 ; i++){
+            //System.out.println(msgTest.substring(i,i+2));
+            mesgTab[j] = message.substring(i,i+2);
+            j++;
+            i++;
+        }
+        // System.out.println("=========================");
+        //System.out.println("encodage");
+        for (String couple : mesgTab){
+            //System.out.println(couple);
+            msgRetour.append(decode.get(couple));
+        }
+
+        return msgRetour.toString();
     }
 }
