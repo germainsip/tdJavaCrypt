@@ -5,6 +5,7 @@ import com.afpa.tools.Transcoder;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class Message {
@@ -38,6 +39,41 @@ public class Message {
     }
 
     public void readNwrite() {
+        if (encoded) {
+            try {
+                this.msgEncodded = Files.readAllLines(msgEncodedPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("====== Décodage =====");
+            for(String ligne : msgEncodded){
+                //System.out.println(ligne);
+                String ligneDecoded = transCoder.decode(ligne);
+                System.out.println(ligneDecoded);
+                try {
+                    Files.writeString(msgClearPath, ligneDecoded + System.lineSeparator(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Le message décodé se trouve: " + msgClearPath.toString());
+        } else {
+            try {
+                this.msgClear = Files.readAllLines(msgClearPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            for (String ligne : msgClear) {
+                //System.out.println(ligne);
+                String ligneEncoded = transCoder.encode(ligne);
+                try {
+                    Files.writeString(msgEncodedPath, (ligneEncoded + System.lineSeparator()), StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Le message encodé se trouve: " + msgEncodedPath.toString());
 
+        }
     }
 }
