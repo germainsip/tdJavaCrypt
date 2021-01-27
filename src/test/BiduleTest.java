@@ -22,11 +22,15 @@ public class BiduleTest {
     public void genTranscoder(){
         String keyCrypted = "6Qe0IsEEH1utWRe7UKzGMiDTytOB3HS1dEfIB4imna3IRHXHRn5ZrvKFEcPjmPgKYGuytG+gDAl1m2DdHalJQg==";
         Transcoder transcoder = new Transcoder(keyCrypted);
-
+        // on vérifie que l'objet est créé
         Assert.assertNotNull(transcoder);
+        // on vérifie que encode est créé
         Assert.assertNotNull(transcoder.getEncode());
+        // on affiche encode à l'écran
         System.out.println(transcoder.getEncode().toString());
+        // on vérifie que decode est créé
         Assert.assertNotNull(transcoder.getDecode());
+        // on affiche decode
         System.out.println(transcoder.getDecode().toString());
     }
 
